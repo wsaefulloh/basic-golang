@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"strconv"
+)
 
 type deretBilang struct {
 	limit int
@@ -72,10 +75,19 @@ func (deret deretBilang) fibonacci() []int {
 }
 
 func main() {
-	deret := deretBilang{40}
-	fmt.Println("limit deret angka", deret.limit)
-	fmt.Println("deret bilangan prima mulai dari 0 -", deret.limit, "adalah", deret.prima())
-	fmt.Println("deret bilangan ganjil mulai dari 0 -", deret.limit, "adalah", deret.ganjil())
-	fmt.Println("deret bilangan genap mulai dari 0 -", deret.limit, "adalah", deret.genap())
-	fmt.Println("deret bilangan fibonacci mulai dari 0 -", deret.limit, "adalah", deret.fibonacci())
+	var limits string
+	fmt.Print("Tentukan limit (angka): ")
+	fmt.Scanln(&limits)
+	var lim, err = strconv.Atoi(limits)
+	if err == nil {
+		deret := deretBilang{lim}
+		fmt.Println("limit deret angka", deret.limit)
+		fmt.Println("deret bilangan prima mulai dari 0 -", deret.limit, "adalah", deret.prima())
+		fmt.Println("deret bilangan ganjil mulai dari 0 -", deret.limit, "adalah", deret.ganjil())
+		fmt.Println("deret bilangan genap mulai dari 0 -", deret.limit, "adalah", deret.genap())
+		fmt.Println("deret bilangan fibonacci mulai dari 0 -", deret.limit, "adalah", deret.fibonacci())
+	} else {
+		fmt.Println(err.Error())
+		fmt.Println("Error : Masukkan data angka")
+	}
 }
